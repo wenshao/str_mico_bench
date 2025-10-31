@@ -10,7 +10,8 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 1)
-@Fork(value = 1)
+@Fork(value = 3)
+@Measurement(iterations = 3)
 public class NewString {
     static byte[] bytes;
     static char[] chars;
@@ -46,7 +47,6 @@ public class NewString {
     public static void main(String[] args) throws Exception {
         Options options = new OptionsBuilder()
                 .include(NewString.class.getName())
-                .forks(1)
                 .build();
         new Runner(options).run();
     }
